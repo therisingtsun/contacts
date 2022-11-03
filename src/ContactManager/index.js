@@ -1,5 +1,5 @@
 const crypto = require("node:crypto");
-const Trie  = require("trie-search");
+const Trie = require("trie-search");
 
 const Contact = require("../Contact");
 const ResultsCache = require("../ResultsCache");
@@ -20,7 +20,7 @@ class ContactManager {
 	static strategies = {
 		prefixSearch(manager, keyType, key) {
 			return manager.tries[keyType].search(key).map(index => manager.contacts[index]);
-		},	
+		},
 		strictSearch(manager, keyType, key) {
 			return manager.contacts.filter(contact => contact[keyType] === key);
 		}
