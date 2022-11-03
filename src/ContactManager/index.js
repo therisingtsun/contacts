@@ -1,4 +1,5 @@
 const Contact = require("../Contact");
+const ResultsCache = require("../ResultsCache");
 
 /** @typedef {"firstName" | "lastName" | "phoneNumber"} keyType */
 
@@ -14,6 +15,7 @@ const strategies = {
 class ContactManager {
 	constructor() {
 		this.contacts = [];
+		this.cachedResults = new ResultsCache();
 	}
 
 	/**
