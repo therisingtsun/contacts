@@ -1,0 +1,17 @@
+{
+	"name": "contacts",
+	"version": "0.1.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/therisingtsun/contacts.git"
+	},
+	"author": "",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/therisingtsun/contacts/issues"
+	},
+	"homepage": "https://github.com/therisingtsun/contacts#readme"
+}
