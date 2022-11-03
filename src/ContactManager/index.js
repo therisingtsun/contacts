@@ -22,7 +22,7 @@ class ContactManager {
 			return manager.tries[keyType].search(key).map(index => manager.contacts[index]);
 		},
 		strictSearch(manager, keyType, key) {
-			return manager.contacts.filter(contact => contact[keyType] === key);
+			return manager.contacts.filter(contact => contact[keyType].toLowerCase() === key.toLowerCase());
 		}
 	}
 

@@ -15,7 +15,7 @@ test("Add Contact", () => {
 });
 
 test("Strict Search", () => {
-	expect(manager.search("lastName", "Changed", "strictSearch")).toStrictEqual({
+	expect(manager.search("lastName", "changed", "strictSearch")).toStrictEqual({
 		count: 1,
 		results: [
 			new Contact("Vipin", "Changed", "+919122334455")
@@ -24,7 +24,7 @@ test("Strict Search", () => {
 });
 
 test("Prefix Search", () => {
-	expect(manager.search("firstName", "Ri", "prefixSearch")).toStrictEqual({
+	expect(manager.search("firstName", "ri", "prefixSearch")).toStrictEqual({
 		count: 1,
 		results: [
 			new Contact("Risabh", "Yadav", "+918899889988")
@@ -33,7 +33,7 @@ test("Prefix Search", () => {
 });
 
 test("Cached Search", ()=> {
-	expect(manager.search("firstName", "Ri", "prefixSearch")).toStrictEqual({
+	expect(manager.search("firstName", "ri", "prefixSearch")).toStrictEqual({
 		count: 1,
 		results: [
 			new Contact("Risabh", "Yadav", "+918899889988")
