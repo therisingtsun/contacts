@@ -4,7 +4,7 @@ class ResultsCache {
 	/**
 	 * @param {number} size 
 	 */
-	constructor (size) {
+	constructor(size) {
 		this.cache = new Map();
 		this.size = size;
 	}
@@ -27,7 +27,9 @@ class ResultsCache {
 	 * @param {Array<Contact>} value 
 	 */
 	put(key, value) {
-
+		this.cache.delete(key);
+		if (this.cache.size === this.size) this.cache.delete(this.cache.keys().next().value);
+		this.cache.set(key, value);
 	}
 }
 
