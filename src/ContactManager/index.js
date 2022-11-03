@@ -1,22 +1,29 @@
+const crypto = require("node:crypto");
+const Trie  = require("trie-search");
+
 const Contact = require("../Contact");
 const ResultsCache = require("../ResultsCache");
-const crypto = require('node:crypto');
 
 /** @typedef {"firstName" | "lastName" | "phoneNumber"} keyType */
-
-const strategies = {
-	prefixSearch(contact, keyType, key) {
-		return new RegExp(`^${key}.*`).test(contact[keyType]);
-	},
-	strictSearch(contact, keyType, key) {
-		return contact[keyType] === key;
-	}
-};
 
 class ContactManager {
 	constructor() {
 		this.contacts = [];
 		this.cachedResults = new ResultsCache();
+		this.tries = {
+			firstName: new Trie(),
+			lastName: new Trie(),
+			phoneNumber: new Trie()
+		};
+	}
+
+	static strategies = {
+		prefixSearch(manager, keyType, key) {
+			return manager.tries[keyType].search(key).map(index => manager.contacts[index]);
+		},	
+		strictSearch(manager, keyType, key) {
+			return manager.contacts.filter(contact => contact[keyType] === key);
+		}
 	}
 
 	/**
@@ -26,15 +33,13 @@ class ContactManager {
 	 * @returns 
 	 */
 	search(keyType, key, searchStrategy) {
-		const secret = 'CRED';
-		const hash = crypto.createHmac('sha256', secret)
+		const secret = "CRED";
+		const hash = crypto.createHmac("sha256", secret)
 			.update(keyType + key + searchStrategy)
-			.digest('hex');
-			
+			.digest("hex");
 		let results = this.cachedResults.retrieve(hash);
-		console.log("check",results)
 		if (!results) {
-			results = this.contacts.filter(contact => strategies[searchStrategy](contact, keyType, key));
+			results = ContactManager.strategies[searchStrategy](this, keyType, key);
 			this.cachedResults.put(hash, results);
 		}
 		return {
@@ -49,8 +54,10 @@ class ContactManager {
 	 * @param {string} phoneNumber 
 	 */
 	addContact(firstName, lastName, phoneNumber) {
-		const newContact = new Contact(firstName, lastName, phoneNumber)
-		this.contacts.push(newContact)
+		this.tries.firstName.map(firstName, this.contacts.length);
+		this.tries.lastName.map(lastName, this.contacts.length);
+		this.tries.phoneNumber.map(phoneNumber, this.contacts.length);
+		this.contacts.push(new Contact(firstName, lastName, phoneNumber));
 		return this;
 	}
 }
