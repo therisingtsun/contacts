@@ -1,7 +1,11 @@
-
+const Contact = require("../Contact");
 class ContactManager {
-	constructor () {
+	constructor() {
 		this.contacts = [];
+	}
+	addContacts(firstName, lastName, phoneNumber) {
+		const newContact = new Contact(firstName, lastName, phoneNumber)
+		this.contacts.push(newContact)
 	}
 }
 
