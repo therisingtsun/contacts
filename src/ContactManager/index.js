@@ -4,7 +4,7 @@ const Contact = require("../Contact");
 
 const strategies = {
 	prefixSearch(contact, keyType, key) {
-		return new RegExp(`^${key}.*`).test(contact[keyType].toString());
+		return new RegExp(`^${key}.*`).test(contact[keyType]);
 	},
 	strictSearch(contact, keyType, key) {
 		return contact[keyType] === key;
@@ -33,7 +33,7 @@ class ContactManager {
 	/**
 	 * @param {string} firstName 
 	 * @param {string} lastName 
-	 * @param {number} phoneNumber 
+	 * @param {string} phoneNumber 
 	 */
 	addContact(firstName, lastName, phoneNumber) {
 		const newContact = new Contact(firstName, lastName, phoneNumber)

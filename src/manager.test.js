@@ -5,20 +5,20 @@ const manager = new ContactManager();
 
 test("Add Contact", () => {
 	manager
-		.addContact("Uday Bhanu", "Bose", 9008997008)
-		.addContact("Vipin", "Yadav", 1234567890)
-		.addContact("Vipin", "Changed", 1122334455)
-		.addContact("Risabh", "Yadav", 8899889988);
+		.addContact("Uday Bhanu", "Bose", "+919008997008")
+		.addContact("Vipin", "Yadav", "+121234567890")
+		.addContact("Vipin", "Changed", "+919122334455")
+		.addContact("Risabh", "Yadav", "+918899889988");
 
 	expect(manager.contacts.length).toBe(4);
-	expect(manager.contacts[0]).toStrictEqual(new Contact("Uday Bhanu", "Bose", 9008997008));
+	expect(manager.contacts[0]).toStrictEqual(new Contact("Uday Bhanu", "Bose", "+919008997008"));
 });
 
 test("Strict Search", () => {
 	expect(manager.search("lastName", "Changed", "strictSearch")).toStrictEqual({
 		count: 1,
 		results: [
-			new Contact("Vipin", "Changed", 1122334455)
+			new Contact("Vipin", "Changed", "+919122334455")
 		]
 	});
 });
@@ -27,7 +27,7 @@ test("Prefix Search", () => {
 	expect(manager.search("firstName", "Ri", "prefixSearch")).toStrictEqual({
 		count: 1,
 		results: [
-			new Contact("Risabh", "Yadav", 8899889988)
+			new Contact("Risabh", "Yadav", "+918899889988")
 		]
 	});
 });
