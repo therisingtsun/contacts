@@ -35,9 +35,10 @@ class ContactManager {
 	 * @param {string} lastName 
 	 * @param {number} phoneNumber 
 	 */
-	addContacts(firstName, lastName, phoneNumber) {
+	addContact(firstName, lastName, phoneNumber) {
 		const newContact = new Contact(firstName, lastName, phoneNumber)
 		this.contacts.push(newContact)
+		return this;
 	}
 }
 
