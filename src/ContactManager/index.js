@@ -20,7 +20,7 @@ class ContactManager {
 
 	/**
 	 * @param {keyType} keyType 
-	 * @param {string | number} key 
+	 * @param {string} key 
 	 * @param {string} searchStrategy 
 	 * @returns 
 	 */

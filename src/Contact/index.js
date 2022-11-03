@@ -2,9 +2,9 @@ class Contact {
 	/**
 	 * @param {string} firstName 
 	 * @param {string} lastName 
-	 * @param {number} phoneNumber 
+	 * @param {string} phoneNumber 
 	 */
-	constructor (firstName, lastName, phoneNumber) {
+	constructor(firstName, lastName, phoneNumber) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
