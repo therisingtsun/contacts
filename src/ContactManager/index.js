@@ -1,12 +1,12 @@
 const Contact = require("../Contact");
 
 class ContactManager {
-	constructor () {
+	constructor() {
 		this.contacts = [];
 	}
 
 	/**
-	 * @param {"firstName" | "lastName", "phoneNumber"} keyType 
+	 * @param {"firstName" | "lastName" | "phoneNumber"} keyType 
 	 * @param {string | number} key 
 	 */
 	searchPartial(keyType, key) {
@@ -19,6 +19,16 @@ class ContactManager {
 			count: results.length,
 			results
 		};
+	}
+
+	/**
+	 * @param {string} firstName 
+	 * @param {string} lastName 
+	 * @param {number} phoneNumber 
+	 */
+	addContacts(firstName, lastName, phoneNumber) {
+		const newContact = new Contact(firstName, lastName, phoneNumber)
+		this.contacts.push(newContact)
 	}
 }
 

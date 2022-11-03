@@ -10,3 +10,7 @@ const contactC = new Contact("Risabh", "Yadav", 8899889988);
 manager.contacts.push(contactA, contactB, contactC);
 
 // console.log(manager.searchPartial("phoneNumber", 1));
+const strictSearch = (key, param) => {
+    const searchResults = contactBook.filter(contact => contact[param] === key)
+    return searchResults
+}
