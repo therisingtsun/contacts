@@ -11,9 +11,15 @@ class ResultsCache {
 
 	/**
 	 * @param {string} key 
+	 * @returns {Array<Contact>}
 	 */
 	retrieve(key) {
-
+		const value = this.cache.get(key);
+		if (value) {
+			this.cache.delete(key);
+			this.cache.set(key, value);
+		}
+		return value;
 	}
 
 	/** 
