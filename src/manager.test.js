@@ -31,3 +31,12 @@ test("Prefix Search", () => {
 		]
 	});
 });
+
+test("Cached Search", ()=> {
+	expect(manager.search("firstName", "Ri", "prefixSearch")).toStrictEqual({
+		count: 1,
+		results: [
+			new Contact("Risabh", "Yadav", "+918899889988")
+		]
+	});
+});

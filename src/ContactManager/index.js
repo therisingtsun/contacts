@@ -1,5 +1,6 @@
 const Contact = require("../Contact");
 const ResultsCache = require("../ResultsCache");
+const crypto = require('node:crypto');
 
 /** @typedef {"firstName" | "lastName" | "phoneNumber"} keyType */
 
@@ -25,7 +26,17 @@ class ContactManager {
 	 * @returns 
 	 */
 	search(keyType, key, searchStrategy) {
-		const results = this.contacts.filter(contact => strategies[searchStrategy](contact, keyType, key));
+		const secret = 'CRED';
+		const hash = crypto.createHmac('sha256', secret)
+			.update(keyType + key + searchStrategy)
+			.digest('hex');
+			
+		let results = this.cachedResults.retrieve(hash);
+		console.log("check",results)
+		if (!results) {
+			results = this.contacts.filter(contact => strategies[searchStrategy](contact, keyType, key));
+			this.cachedResults.put(hash, results);
+		}
 		return {
 			count: results.length,
 			results

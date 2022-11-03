@@ -10,3 +10,4 @@ manager.contacts.push(
 );
 
 console.log(manager.search("lastName", "Changed", "strictSearch"));
+console.log(manager.cachedResults.cache);
