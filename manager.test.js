@@ -32,11 +32,24 @@ test("Prefix Search", () => {
 	});
 });
 
-test("Cached Search", ()=> {
+test("Cached Search", () => {
 	expect(manager.search("firstName", "ri", "prefixSearch")).toStrictEqual({
 		count: 1,
 		results: [
 			new Contact("Risabh", "Yadav", "+918899889988")
 		]
 	});
+});
+
+test("Invalid Input [ Invalid type for contact fields ]", () => {
+	expect(() => manager.addContact("Abhishek", "Rana", 7879787675)).toThrow();
+});
+test("Invalid Input [ Empty strings as contact fields ]", () => {
+	expect(() => manager.addContact("", "Rana", "+917879787675")).toThrow();
+});
+test("Invalid Input [ Invalid Phone Number ]", () => {
+	expect(() => manager.addContact("Abhishek", "Rana", "+917u7978767 r")).toThrow();
+});
+test("Invalid Input [ Field length exceeds limit ]", () => {
+	expect(() => manager.addContact("Abhishek", "Ranaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "+917879787675")).toThrow();
 });
