@@ -1,5 +1,6 @@
 const crypto = require("node:crypto");
 const Trie = require("trie-search");
+const validator = require("validator")
 
 const Contact = require("../Contact");
 const ResultsCache = require("../ResultsCache");
@@ -55,9 +56,18 @@ class ContactManager {
 	 * @param {string} phoneNumber 
 	 */
 	addContact(firstName, lastName, phoneNumber) {
-		this.tries.firstName.map(firstName, this.contacts.length);
-		this.tries.lastName.map(lastName, this.contacts.length);
-		this.tries.phoneNumber.map(phoneNumber, this.contacts.length);
+
+		if (!firstName.length || !phoneNumber.length) throw new Error("Input can't be NULL")
+		if (!(/^\+[1-9]\d{1,14}$/).test(phoneNumber)) throw new Error("Phone Number should be a valid input")
+
+		if (firstName.length > 100) throw new Error("First Name length exceeds limit")
+		if (lastName.length > 100) throw new Error("Last Name length exceeds limit")
+		if (phoneNumber.length > 15) throw new Error("Phone Number length exceeds limit")
+
+		const index = this.contacts.length;
+		this.tries.firstName.map(firstName, index);
+		this.tries.lastName.map(lastName, index);
+		this.tries.phoneNumber.map(phoneNumber, index);
 		this.contacts.push(new Contact(firstName, lastName, phoneNumber));
 		return this;
 	}
