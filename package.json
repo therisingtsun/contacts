@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "src/index.js",
 	"scripts": {
-		"manual-test": "node src/manual-test.js",
+		"manual-test": "node manual-test.js",
 		"test": "jest"
 	},
 	"repository": {

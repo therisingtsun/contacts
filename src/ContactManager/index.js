@@ -22,7 +22,8 @@ class ContactManager {
 			return manager.tries[keyType].search(key).map(index => manager.contacts[index]);
 		},
 		strictSearch(manager, keyType, key) {
-			return manager.contacts.filter(contact => contact[keyType].toLowerCase() === key.toLowerCase());
+			return this.prefixSearch(manager, keyType, key)
+				.filter(contact => contact[keyType].toLowerCase() === key.toLowerCase());
 		}
 	}
 
