@@ -19,6 +19,7 @@
 	"homepage": "https://github.com/therisingtsun/contacts#readme",
 	"dependencies": {
 		"jest": "^29.2.2",
-		"trie-search": "^1.3.6"
+		"trie-search": "^1.3.6",
+		"validator": "^13.7.0"
 	}
 }
