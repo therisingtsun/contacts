@@ -4,7 +4,7 @@ class ResultsCache {
 	/**
 	 * @param {number} size 
 	 */
-	constructor(size = 10) {
+	constructor(size = 5) {
 		this.cache = new Map();
 		this.size = size;
 	}

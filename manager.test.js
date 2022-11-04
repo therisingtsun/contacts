@@ -1,5 +1,5 @@
-const Contact = require("./Contact");
-const ContactManager = require("./ContactManager");
+const Contact = require("./src/Contact");
+const ContactManager = require("./src/ContactManager");
 
 const manager = new ContactManager();
 
